@@ -51,7 +51,11 @@ function decrypt(value, key) {
     try {
         const object = JSON.parse(firstArgument);
         Object.entries(object).map(([key, value]) => {
-            object[key] = decrypt(value, encryptionKey);
+            if (typeof value !== 'string') {
+                console.warn(`${key} is not a string...skipping`);
+            } else {
+                object[key] = decrypt(value, encryptionKey);
+            }
         });
         console.log(object);
     } catch (e) {

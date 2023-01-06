@@ -11,7 +11,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -27,4 +26,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install -g typescript mocha && npm install
-    - run: npm run test
+    - run: INTEGRATION_ENCRYPTION_KEY=123 npm run test
